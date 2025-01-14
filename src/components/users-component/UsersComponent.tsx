@@ -12,7 +12,7 @@ export const UsersComponent = () => {
         .then(({users}:IUserResponseModel)=>{
                 setUsers(users);
             })
-    })
+    },[]);
     return (
         <div>
             {
