@@ -2,6 +2,7 @@ import {FC, useEffect, useState} from "react";
 
 import {postService} from "../../services/api.service.ts";
 import {IPost} from "../../models/IPost.ts";
+import {PostComponent} from "../post/PostComponent.tsx";
 
 type PostsTypeProps = {
     userId: string;
@@ -20,7 +21,7 @@ const PostsComponent: FC<PostsTypeProps> = ({userId}) => {
     return (
         <div>
             {
-                posts.map(value => <div key={value.id}>{value.title}</div>)
+                posts.map((value: IPost) => <PostComponent key={value.id} item={value}/>)
             }
         </div>
     );

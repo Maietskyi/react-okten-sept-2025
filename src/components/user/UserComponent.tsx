@@ -16,7 +16,6 @@ const UserComponent: FC<UserTypeProps> = ({item}) => {
             <Link to={'details'} state={item}>{item.username}</Link>
             <br/>
             <button className='border-2 rounded-md border-black' onClick={handleOnClick}>go to details</button>
-
         </div>
     );
 };
