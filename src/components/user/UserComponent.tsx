@@ -8,14 +8,14 @@ type UserTypeProps = {
 
 const UserComponent: FC<UserTypeProps> = ({item}) => {
     const navigate = useNavigate();
-    const handleOnClick=()=>{
+    const handleOnClick = () => {
         navigate('details', {state: item})
     };
     return (
         <div>
             <Link to={'details'} state={item}>{item.username}</Link>
-
-            <button onClick={handleOnClick}>go to details</button>
+            <br/>
+            <button className='border-2 rounded-md border-black' onClick={handleOnClick}>go to details</button>
 
         </div>
     );
