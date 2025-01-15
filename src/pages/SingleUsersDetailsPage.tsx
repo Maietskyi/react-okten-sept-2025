@@ -1,4 +1,4 @@
-import {SingleUsersDetailComponent} from "../components/SingleUsersDetailsComponent/SingleUsersDetailsComponent.tsx";
+import {SingleUsersDetailComponent} from "../components/singleUsersDetailsComponent/SingleUsersDetailsComponent.tsx";
 
 const SingleUsersDetailsPage = () => {
 
