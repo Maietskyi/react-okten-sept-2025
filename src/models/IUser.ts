@@ -76,4 +76,3 @@ export interface ICrypto {
     wallet: string;
     network: string;
 }
-//

@@ -3,4 +3,3 @@ export type IBaseResponseModel = {
     skip: number;
     limit: number;
 }
-//

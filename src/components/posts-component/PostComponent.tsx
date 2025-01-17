@@ -6,6 +6,5 @@ interface PostComponentProps{
 }
 
 export  const PostComponent =({post}:PostComponentProps)=>{
-    return <div>{post.title} {post.id}</div>;
+    return <div className='p-1 flex flex-col items-center justify-center'>{post.id}. {post.title}</div>;
 }
-//

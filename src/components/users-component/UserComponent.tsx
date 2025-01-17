@@ -5,6 +5,5 @@ interface UserComponentProps{
 }
 
 export  const UserComponent =({user}:UserComponentProps)=>{
-    return <div>{user.username} {user.id}</div>;
+    return <div className='p-1 flex flex-col items-center justify-center'>{user.id} - {user.username}</div>;
 }
-//

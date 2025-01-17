@@ -6,4 +6,3 @@ export const getPosts = async (page: string) => {
     return  await fetch(baseUrl + '/posts' + '?skip=' + skip)
         .then(res => res.json());
 }
-//
