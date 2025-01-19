@@ -1,6 +1,6 @@
 import CarComponent from "../components/cars/CarComponent.tsx";
 
-const CarsPage = () => {
+const CarPage = () => {
     return (
         <div>
             <CarComponent/>
@@ -8,4 +8,4 @@ const CarsPage = () => {
     );
 };
 
-export default CarsPage;
+export default CarPage;
