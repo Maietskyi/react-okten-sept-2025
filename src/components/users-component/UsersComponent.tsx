@@ -7,14 +7,20 @@ import {Outlet, useSearchParams} from "react-router-dom";
 import {PaginationComponent} from "../pagination-component/PaginationComponent.tsx";
 
 export const UsersComponent = () => {
-    const [searchParams] = useSearchParams({page:'1'});
 
+    const [searchParams] = useSearchParams({page: '1'});
+    const [disabledStatus, setDisabledStatus] = useState<boolean>(false);
     const [users, setUsers] = useState<IUser[]>([]);
+
     useEffect(() => {
         const currentPage = searchParams.get('page') || '1';
         getUsers(currentPage)
-            .then(({users}:IUsersResponse) => {
+            .then(({users, total}: IUsersResponse) => {
                 setUsers(users);
+                const lastUserIdOfCurrentBatch = users[users.length - 1]['id'];
+                if (lastUserIdOfCurrentBatch === total) {
+                    setDisabledStatus(true);
+                }
             });
     }, [searchParams]);
     return (
@@ -27,7 +33,7 @@ export const UsersComponent = () => {
             </div>
             <div>
                 <Outlet/>
-                <PaginationComponent/>
+                <PaginationComponent disabledStatus={disabledStatus}/>
             </div>
         </>
     );

@@ -8,13 +8,18 @@ import {IPostsResponse} from "../../models/IPostsResponse.ts";
 
 export const PostsComponent = () => {
     const [searchParams] = useSearchParams({page: '1'});
-
+    const [disabledStatus, setDisabledStatus] = useState<boolean>(false);
     const [posts, setPosts] = useState<IPost[]>([]);
+
     useEffect(() => {
         const currentPage = searchParams.get('page') || '1';
         getPosts(currentPage)
-            .then(({posts}: IPostsResponse) => {
-                setPosts(posts)
+            .then(({posts, total}: IPostsResponse) => {
+                setPosts(posts);
+                const lastUserIdOfCurrentBatch = posts[posts.length - 1]['id'];
+                if (lastUserIdOfCurrentBatch === total) {
+                    setDisabledStatus(true);
+                }
             });
     }, [searchParams]);
     return (
@@ -27,7 +32,7 @@ export const PostsComponent = () => {
             </div>
             <div>
                 <Outlet/>
-                <PaginationComponent/>
+                <PaginationComponent disabledStatus={disabledStatus}/>
             </div>
         </>
     );

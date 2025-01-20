@@ -3,4 +3,5 @@ import {IBaseResponseModel} from "./IBaseResponseModel.ts";
 
 export interface IUsersResponse extends IBaseResponseModel {
     users: IUser[];
+    total: number;
 }

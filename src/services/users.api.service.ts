@@ -5,8 +5,10 @@ const baseUrl = import.meta.env.VITE_BASE_URL;
 export const getUsers = async (page: string):Promise<IUsersResponse> => {
     const limit = 30;
     const skip = limit * (+page) - limit;
-    return await fetch(baseUrl + '/users' + '?skip=' + skip)
+    const apiResponse = await fetch(baseUrl + '/users' + '?skip=' + skip)
         .then(value => value.json());
+    console.log(apiResponse);
+    return apiResponse;
 }
 
 

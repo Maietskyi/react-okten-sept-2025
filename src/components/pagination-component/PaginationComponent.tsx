@@ -1,6 +1,12 @@
 import {useSearchParams} from "react-router-dom";
+import {FC} from "react";
 
-export const PaginationComponent = () => {
+type PropsType={
+    disabledStatus:boolean,
+}
+
+export const PaginationComponent:FC<PropsType> = ({disabledStatus}) => {
+
     const [searchParams, setSearchParams] = useSearchParams({page: '1'});
     let currentPage = Number(searchParams.get('page') || '1');
     return (
@@ -14,10 +20,10 @@ export const PaginationComponent = () => {
                 }} disabled={currentPage === 1}>&#8592; prev
             </button>
             <button
-                className={`m-4 rounded-lg border-black border-2 p-2 ${currentPage === 9 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`m-4 rounded-lg border-black border-2 p-2 ${disabledStatus ? 'opacity-50 cursor-not-allowed' : ''}`}
                 onClick={() => {
                     setSearchParams({page: (++currentPage).toString()});
-                }} disabled={currentPage === 9}>next &#8594;
+                }} disabled={disabledStatus}>next &#8594;
             </button>
         </div>
     );
