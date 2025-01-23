@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {loadAuthProducts} from "../services/api.services.ts";
+import {loadAuthProducts, refresh} from "../services/api.services.ts";
 
 
 const AuthResourcesComponent = () => {
@@ -7,7 +7,14 @@ const AuthResourcesComponent = () => {
         loadAuthProducts()
             .then(products=>{
                 console.log(products);
+            }).catch(reason => {
+            console.log(reason);
+            refresh().then(()=> {
+                loadAuthProducts()
+                    .then(()=>loadAuthProducts())
+                    .then(value => console.log(value));
             })
+        });
     }, []);
 
     return (
