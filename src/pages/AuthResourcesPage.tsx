@@ -1,7 +1,9 @@
+import AuthResourcesComponent from "../components/AuthResourcesComponent.tsx";
+
 const AuthResourcesPage = () => {
     return (
         <div>
-            Auth Resources Page
+            <AuthResourcesComponent/>
         </div>
     );
 };

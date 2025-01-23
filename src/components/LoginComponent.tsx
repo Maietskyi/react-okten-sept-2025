@@ -7,7 +7,7 @@ const LoginComponent = () => {
         login({
             username: 'emilys',
             password: 'emilyspass',
-            expiresInMain: 1
+            expiresInMins: 1
         })
     }, []);
 

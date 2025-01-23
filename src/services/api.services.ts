@@ -1,7 +1,9 @@
 import axios from "axios";
 import {IUserWithTokens} from "../models/IUserWithTokens.ts";
+import {IProduct} from "../models/IProduct.ts";
+import {IProductsResponseType} from "../models/IProductsResponseType.ts";
 
-export const axiosInstance = axios.create({
+const axiosInstance = axios.create({
     baseURL: "https://dummyjson.com/auth",
     headers: {}
 })
@@ -9,10 +11,18 @@ export const axiosInstance = axios.create({
 type loginData = {
     username: string,
     password: string,
-    expiresInMain: number
+    expiresInMins: number
 }
 
-export const login = async ({username, password, expiresInMain}: loginData) => {
-   const {data: userWithTokens} = await axiosInstance.post<IUserWithTokens>('/login', {username, password, expiresInMain})
-    console.log(userWithTokens)
+export const login = async ({username, password, expiresInMins}: loginData): Promise<IUserWithTokens> => {
+    const {data: userWithTokens} = await axiosInstance.post<IUserWithTokens>('/login', {
+        username, password, expiresInMins})
+    console.log(userWithTokens);
+    localStorage.setItem('user', JSON.stringify(userWithTokens));
+    return userWithTokens;
+}
+
+export const loadAuthProducts = async ():Promise<IProduct[]> => {
+ const {data} = await axiosInstance.get<IProductsResponseType>('/products');
+ return data.products
 }
