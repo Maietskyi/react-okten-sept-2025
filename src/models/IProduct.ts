@@ -1,9 +1,4 @@
-export interface IProduct {
-	products: RootObjectProducts[];
-	total: number;
-	skip: number;
-	limit: number;
-}
+
 export interface RootObjectProductsDimensions {
 	width: number;
 	height: number;
@@ -22,7 +17,7 @@ export interface RootObjectProductsMeta {
 	barcode: string;
 	qrCode: string;
 }
-export interface RootObjectProducts {
+export interface IProduct {
 	id: number;
 	title: string;
 	description: string;
