@@ -24,7 +24,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use((requestObject) => {
     // Перевіряю, чи метод запиту є "GET"
     if (requestObject.method?.toUpperCase() === "GET") {
-        // якщо метод запиту GET - додаю до заголовків токен авторизації
+        // якщо метод запиту GET - додаю до заголовків Authorization, який дорівнює Bearer + значення яке знаходиться в LocalStorage
         requestObject.headers.Authorization = 'Bearer ' + retriveLocalStorage<IUserWithTokens>('user').accessToken;
     }
     return requestObject;
