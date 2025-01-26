@@ -20,7 +20,7 @@ const axiosInstance = axios.create({
     headers: {}
 })
 
-// Додаю інтерсептор для запитів, який виконується перед кожним запитом
+// Додаю інтерсептор для запитів, який виконується (аерехоплює всі GET запити) перед кожним запитом
 axiosInstance.interceptors.request.use((requestObject) => {
     // Перевіряю, чи метод запиту є "GET"
     if (requestObject.method?.toUpperCase() === "GET") {
