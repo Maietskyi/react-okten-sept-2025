@@ -1,5 +1,5 @@
 import React from 'react';
-import ComponentLevel3 from './ComponentLevel3';
+import ComponentLevel3 from './ComponentLevel3.tsx';
 
 const ComponentLevel2: React.FC = () => (
     <div className="p-4 border rounded-xl">
