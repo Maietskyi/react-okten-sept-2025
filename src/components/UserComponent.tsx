@@ -1,6 +1,6 @@
-import { memo } from "react";
+import {FC, memo } from "react";
 
-const UserComponent = memo(() => {
+const UserComponent:FC<{foo:()=>void}> = memo(() => {
     console.log('user')
     return (
         <div>
