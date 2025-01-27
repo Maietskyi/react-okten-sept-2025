@@ -25,6 +25,7 @@ axiosInstance.interceptors.request.use((requestObject) => {
     // Перевіряю, чи метод запиту є "GET"
     if (requestObject.method?.toUpperCase() === "GET") {
         // якщо метод запиту GET - додаю до заголовків Authorization, який дорівнює Bearer + значення яке знаходиться в LocalStorage
+        // і повертаю не об'єкт а accessToken
         requestObject.headers.Authorization = 'Bearer ' + retriveLocalStorage<IUserWithTokens>('user').accessToken;
     }
     return requestObject;
@@ -53,13 +54,14 @@ export const loadAuthProducts = async (): Promise<IProduct[]> => {
     // Повертаю масив продуктів
     return products
 }
-// Експортую асинхронну функцію для оновлення токенів
+// Експортую асинхронну функцію refresh для оновлення токенів
 export const refresh = async () => {
     // оголошую змінну iUserWithTokens, яка дістає токени з localStorage
     const iUserWithTokens = retriveLocalStorage<IUserWithTokens>('/users');
-    // оголошую деструктуризовану змінну, яка виконує постовий запит на '/refresh'
+    // оголошую деструктуризовану змінну, яка виконує постовий запит на урлу '/refresh'
     const {
         data: {accessToken, refreshToken}
+    //     у відповідь я буду отримувати оновлений об'єкт ITokenPair
     } = await axiosInstance.post<ITokenPair>('/refresh', {
         // Надсилаємо на API - refreshToken для оновлення токенів
         refreshToken: iUserWithTokens.refreshToken,
