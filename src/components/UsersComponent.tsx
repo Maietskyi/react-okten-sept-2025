@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import {userActions} from "../redux/slices/UserSlice.ts";
 import {IUser} from "../models/IUser.ts";
 
-export const UsersPage = () => {
+export const UsersComponent = () => {
 
     const dispatch = useAppDispatch();
     const users = useAppSelector((state) => state.userStoreSlice.users);
@@ -13,7 +13,7 @@ export const UsersPage = () => {
 
     return (
         <>
-            {users.map((user:IUser) => (<div key={user.id}>{user.name}</div>))}
+            {users.map((user:IUser) => (<div key={user.id}>{user.id}--{user.name}</div>))}
         </>
     );
 };

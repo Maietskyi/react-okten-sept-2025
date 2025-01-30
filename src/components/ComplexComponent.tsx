@@ -7,7 +7,7 @@ import {IComment} from "../models/IComment.ts";
 import {IUser} from "../models/IUser.ts";
 import {IPost} from "../models/IPost.ts";
 
-export const ComplexPage = () => {
+export const ComplexComponent = () => {
 
     const dispatch = useAppDispatch();
     const {
@@ -30,13 +30,16 @@ export const ComplexPage = () => {
 
     return (
         <div>
-            {users.map((user:IUser) => (<div key={user.id}>{user.name}</div>))}
+            Users
+            {users.map((user:IUser) => (<div key={user.id}>{user.id}--{user.name}</div>))}
             <br/>
-            {posts.map((post:IPost) => (<div key={post.id}>{post.title}</div>))}
+            Posts
+            {posts.map((post:IPost) => (<div key={post.id}>{post.id}--{post.title}</div>))}
             <br/>
-            {comments.map((comment:IComment) => (<div key={comment.id}>{comment.name}</div>))}
+            Comments
+            {comments.map((comment:IComment) => (<div key={comment.id}>{comment.id}--{comment.name}</div>))}
         </div>
     );
 };
 
-export default ComplexPage;
+export default ComplexComponent;

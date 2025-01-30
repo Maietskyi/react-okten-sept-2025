@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import {commentActions} from "../redux/slices/CommentSlice.ts";
 import {IComment} from "../models/IComment.ts";
 
-export const CommentsPage = () => {
+export const CommentsComponent = () => {
 
     const dispatch = useAppDispatch();
     const comments = useAppSelector((state) => state.commentStoreSlice.comments);
@@ -13,7 +13,7 @@ export const CommentsPage = () => {
 
     return (
         <>
-            {comments.map((comment:IComment) => (<div key={comment.id}>{comment.name}</div>))}
+            {comments.map((comment:IComment) => (<div key={comment.id}>{comment.id}--{comment.name}</div>))}
         </>
     );
 };

@@ -1,13 +1,14 @@
-import './App.css'
 import {Outlet} from "react-router";
 import {Menu} from "../components/Menu.tsx";
 
-export function MainLayouts() {
+const MainLayouts = () => {
 
     return (
-        <>
+        <div>
             <Outlet/>
             <Menu/>
-        </>
-    )
-}
+        </div>
+    );
+};
+
+export default MainLayouts;
