@@ -8,10 +8,7 @@ export const Menu = () => {
                     <Link to='/users'>Users</Link>
                 </li>
                 <li>
-                    <Link to='/posts'>Posts</Link>
-                </li>
-                <li>
-                    <Link to='/comments'>Comments</Link>
+                    <Link to='/recipes'>Recipes</Link>
                 </li>
                 <li>
                     <Link to='/complex'>Complex</Link>

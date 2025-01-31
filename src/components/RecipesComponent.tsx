@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import {postActions} from "../redux/slices/PostSlice.ts";
 import {IPost} from "../models/IPost.ts";
 
-export const PostsComponent = () => {
+export const RecipesComponent = () => {
 
     const dispatch = useAppDispatch();
     const posts = useAppSelector((state) => state.postStoreSlice.posts);
