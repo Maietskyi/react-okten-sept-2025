@@ -1,8 +1,9 @@
+import LoginComponent from "../../components/login-component/LoginComponent.tsx";
 
 const AuthPage = () => {
     return (
         <div>
-            Auth Page
+            <LoginComponent/>
         </div>
     );
 };
