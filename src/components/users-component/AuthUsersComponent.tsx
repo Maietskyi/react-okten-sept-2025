@@ -52,7 +52,7 @@ const AuthUsersComponent = () => {
         </div>
             <div>
                 <Outlet/>
-                <PaginationComponent totalPages={2}/>
+                <PaginationComponent totalPages={20} />
             </div>
         </div>
     );
