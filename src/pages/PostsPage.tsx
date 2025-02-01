@@ -1,6 +1,6 @@
 import {PostsComponent} from "../components/PostsComponent.tsx";
 
-export const RecipesPage = () => {
+export const PostsPage = () => {
     return (
         <>
             <PostsComponent />
