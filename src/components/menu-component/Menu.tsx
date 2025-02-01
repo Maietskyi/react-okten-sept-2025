@@ -38,7 +38,7 @@ export const Menu = () => {
                     <Link to='/auth/users'>Users</Link>
                 </li>
                 <li>
-                    <Link to='/recipes'>recipes</Link>
+                    <Link to='/auth/recipes'>recipes</Link>
                 </li>
             </ul>
         </div>

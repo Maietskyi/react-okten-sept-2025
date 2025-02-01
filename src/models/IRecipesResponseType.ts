@@ -4,5 +4,5 @@ export interface IRecipesResponseType {
 	total: number;
 	skip: number;
 	limit: number;
-	users: IRecipe[];
+	recipes: IRecipe[];
 }

@@ -6,6 +6,8 @@ import {retriveLocalStorage} from "./helpers.ts";
 import {ITokenPair} from "../models/ITokenPair.ts";
 import {IUser} from "../models/IUser.ts";
 import {IUsersResponseType} from "../models/IUsersResponseType.ts";
+import {IRecipe} from "../models/IRecipe.ts";
+import {IRecipesResponseType} from "../models/IRecipesResponseType.ts";
 
 // імпорти: бібліотеки, інтерфейсів, retriveLocalStorage - функції для отримання даних з LocalStorage
 
@@ -56,6 +58,14 @@ export const loadAuthUsers = async (): Promise<IUser[]> => {
     const {data: {users}} = await axiosInstance.get<IUsersResponseType>('/users');
     // Повертаю масив продуктів
     return users
+}
+
+// Експортуємо асинхронну функцію. яка повертає (завантажує) список продуктів, з аудентифікованої точки (якщо користувач авторизований)
+export const loadAuthRecipes = async (): Promise<IRecipe[]> => {
+    // Оголошую дуструктуровану змінну в якій виконую get запит на урлу `/products` і отримую список продуктів
+    const {data: {recipes}} = await axiosInstance.get<IRecipesResponseType>('/recipes');
+    // Повертаю масив продуктів
+    return recipes;
 }
 // Експортую асинхронну функцію refresh для оновлення токенів
 export const refresh = async () => {

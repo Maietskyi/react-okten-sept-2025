@@ -1,11 +1,9 @@
-
-import {PaginationComponent} from "../../components/pagination-component/PaginationComponent.tsx";
+import AuthRecipesComponent from "../../components/recipes-component/AuthRecipesComponent.tsx";
 
 const RecipesPage = () => {
     return (
         <div>
-            Recipes page
-            <PaginationComponent/>
+            <AuthRecipesComponent/>
         </div>
     );
 };

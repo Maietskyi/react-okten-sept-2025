@@ -9,7 +9,7 @@ export const routes = createBrowserRouter([
     {
         path: "/", element: <MainLayouts/>, children: [
             {path: "auth/users", element: <UsersPage/>},
-            {path: "recipes", element: <RecipesPage/>},
+            {path: "auth/recipes", element: <RecipesPage/>},
             {path: "auth", element: <AuthPage/>}
         ]
     }
