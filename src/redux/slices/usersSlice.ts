@@ -1,25 +1,34 @@
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 import { User } from '../../models';
 
-export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-    const response = await fetch('https://dummyjson.com/users');
-    return response.json();
+export const fetchUsers = createAsyncThunk('users/fetch', async (query: string) => {
+    const url = query ? `https://dummyjson.com/users/search?q=${query}` : 'https://dummyjson.com/users';
+    const response = await axios.get(url);
+    return response.data.users;
 });
 
 interface UsersState {
     users: User[];
     loading: boolean;
+    searchQuery: string;
 }
 
 const initialState: UsersState = {
-    users: [],
+    items: [],
     loading: false,
+    error: null,
 };
 
 const usersSlice = createSlice({
     name: 'users',
     initialState,
-    reducers: {},
+    reducers: {
+        setSearchQuery: (state, action) => {
+            state.searchQuery = action.payload;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchUsers.pending, (state) => {
             state.loading = true;
@@ -31,4 +40,5 @@ const usersSlice = createSlice({
     },
 });
 
+export const { setSearchQuery } = usersSlice.actions;
 export default usersSlice.reducer;

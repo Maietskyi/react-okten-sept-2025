@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../redux/slices/authSlice';
+import { RootState } from '../redux/store';
 
 const AuthPage: React.FC = () => {
-    const [username, setUsername] = useState('');
     const dispatch = useDispatch();
+    const { loading, error } = useSelector((state: RootState) => state.auth);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
-        dispatch(login({ id: 1, username, image: '' }));
+    const handleLogin = (e: React.FormEvent) => {
+        e.preventDefault();
+        dispatch(login({ username, password }) as any);
     };
 
     return (
         <div>
-            <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-            <button onClick={handleLogin}>Login</button>
+            <h2>Login</h2>
+            <form onSubmit={handleLogin}>
+                <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <button type="submit" disabled={loading}>Login</button>
+            </form>
+            {error && <p>{error}</p>}
         </div>
     );
 };

@@ -1,25 +1,38 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchRecipes } from '../redux/slices/recipesSlice';
-import { RootState } from '../redux/store';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Recipe, User } from '../models';
 
-const RecipesPage: React.FC = () => {
-    const dispatch = useDispatch();
-    const { recipes, loading } = useSelector((state: RootState) => state.recipes);
+const RecipeDetailPage: React.FC = () => {
+    const { id } = useParams<{ id: string }>();
+    const [recipe, setRecipe] = useState<Recipe | null>(null);
+    const [creator, setCreator] = useState<User | null>(null);
 
     useEffect(() => {
-        dispatch(fetchRecipes() as any);
-    }, [dispatch]);
+        fetch(`https://dummyjson.com/recipes/${id}`)
+            .then(res => res.json())
+            .then(setRecipe);
+    }, [id]);
 
-    if (loading) return <div>Loading...</div>;
+    useEffect(() => {
+        if (recipe) {
+            fetch(`https://dummyjson.com/users/${recipe.creatorId}`)
+                .then(res => res.json())
+                .then(setCreator);
+        }
+    }, [recipe]);
+
+    if (!recipe) return <div>Loading...</div>;
 
     return (
         <div>
-            {recipes.map((recipe) => (
-                <div key={recipe.id}>{recipe.name}</div>
-            ))}
+            <h1>{recipe.name}</h1>
+            <p>{recipe.description}</p>
+            <p>Tags: {recipe.tags.join(', ')}</p>
+            {creator && (
+                <p>Created by: <a href={`/users/${creator.id}`}>{creator.username}</a></p>
+            )}
         </div>
     );
 };
 
-export default RecipesPage;
+export default RecipeDetailPage;

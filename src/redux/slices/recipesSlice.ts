@@ -9,17 +9,28 @@ export const fetchRecipes = createAsyncThunk('recipes/fetchRecipes', async () =>
 interface RecipesState {
     recipes: Recipe[];
     loading: boolean;
+    searchQuery: string;
+    selectedTag: string | null;
 }
 
 const initialState: RecipesState = {
     recipes: [],
     loading: false,
+    searchQuery: '',
+    selectedTag: null,
 };
 
 const recipesSlice = createSlice({
     name: 'recipes',
     initialState,
-    reducers: {},
+    reducers: {
+        setSearchQuery: (state, action) => {
+            state.searchQuery = action.payload;
+        },
+        setSelectedTag: (state, action) => {
+            state.selectedTag = action.payload;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchRecipes.pending, (state) => {
             state.loading = true;
@@ -31,4 +42,5 @@ const recipesSlice = createSlice({
     },
 });
 
+export const { setSearchQuery, setSelectedTag } = recipesSlice.actions;
 export default recipesSlice.reducer;

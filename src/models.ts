@@ -15,3 +15,9 @@ export interface Recipe {
     creatorId: number;
     description: string;
 }
+
+export interface UsersState {
+    items: User[];
+    loading: boolean;
+    error: string | null;
+}
