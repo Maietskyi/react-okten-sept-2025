@@ -19,6 +19,8 @@ const initialState: UsersState = {
     items: [],
     loading: false,
     error: null,
+    total: 0,
+    page: 1,
 };
 
 const usersSlice = createSlice({

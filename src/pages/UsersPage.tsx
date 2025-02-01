@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../redux/slices/usersSlice';
 import { RootState } from '../redux/store';
@@ -8,13 +8,14 @@ import { User } from '../models';
 
 const UsersPage: React.FC = () => {
     const dispatch = useDispatch();
-    const users = useSelector((state: RootState) => state.users.items);
+    const { items: users, page, total } = useSelector((state: RootState) => state.users);
     const [searchParams] = useSearchParams();
     const searchQuery = searchParams.get('search') || '';
+    const [currentPage, setCurrentPage] = useState(page);
 
     useEffect(() => {
-        dispatch(fetchUsers(searchQuery) as any);
-    }, [searchQuery, dispatch]);
+        dispatch(fetchUsers({ searchQuery, page: currentPage }) as any);
+    }, [searchQuery, currentPage, dispatch]);
 
     return (
         <div>
@@ -25,6 +26,8 @@ const UsersPage: React.FC = () => {
                     <li key={user.id}>{user.username}</li>
                 ))}
             </ul>
+            <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+            <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage * 10 >= total}>Next</button>
         </div>
     );
 };

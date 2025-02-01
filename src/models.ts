@@ -1,3 +1,4 @@
+
 export interface User {
     id: number;
     username: string;
@@ -20,4 +21,6 @@ export interface UsersState {
     items: User[];
     loading: boolean;
     error: string | null;
+    total: number;
+    page: number;
 }
