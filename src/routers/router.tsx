@@ -8,7 +8,7 @@ import AuthPage from "../pages/auth-page/AuthPage.tsx";
 export const routes = createBrowserRouter([
     {
         path: "/", element: <MainLayouts/>, children: [
-            {path: "users", element: <UsersPage/>},
+            {path: "auth/users", element: <UsersPage/>},
             {path: "recipes", element: <RecipesPage/>},
             {path: "auth", element: <AuthPage/>}
         ]

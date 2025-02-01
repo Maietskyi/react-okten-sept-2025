@@ -4,6 +4,8 @@ import {useEffect, useState} from "react";
 // імпортую функції loadAuthProducts та refresh із сервісу API
 import {IUser} from "../../models/IUser.ts";
 import {loadAuthUsers, refresh} from "../../sirvices/api.services.ts";
+import {PaginationComponent} from "../pagination-component/PaginationComponent.tsx";
+import {Outlet} from "react-router";
 // імпортую інтерфейс IProduct, щоб визначити тип для продуктів
 //оголошую змінну яка є функціональним компонентом AuthResourcesComponent
 const AuthUsersComponent = () => {
@@ -37,6 +39,7 @@ const AuthUsersComponent = () => {
     // повертаю розмітку на сторінку AuthResourcesPage
     return (
         <div>
+        <div>
             {/* Виводжу отримані продукти */}
             {users.map((user) => (
                 // роблю загальний дів в якому буду повертати інформацію про продукти
@@ -46,6 +49,11 @@ const AuthUsersComponent = () => {
                     <p>{user.image}</p>
                 </div>
             ))}
+        </div>
+            <div>
+                <Outlet/>
+                <PaginationComponent totalPages={2}/>
+            </div>
         </div>
     );
 };

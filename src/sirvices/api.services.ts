@@ -4,6 +4,8 @@ import {IUserWithTokens} from "../models/IUserWithTokens.ts";
 // import {IProductsResponseType} from "../models/IProductsResponseType.ts";
 import {retriveLocalStorage} from "./helpers.ts";
 import {ITokenPair} from "../models/ITokenPair.ts";
+import {IUser} from "../models/IUser.ts";
+import {IUsersResponseType} from "../models/IUsersResponseType.ts";
 
 // імпорти: бібліотеки, інтерфейсів, retriveLocalStorage - функції для отримання даних з LocalStorage
 
@@ -48,13 +50,13 @@ export const login = async ({username, password, expiresInMins}: loginData): Pro
     // Повертаю отримані токени
     return userWithTokens;
 }
-// // Експортуємо асинхронну функцію. яка повертає (завантажує) список продуктів, з аудентифікованої точки (якщо користувач авторизований)
-// export const loadAuthProducts = async (): Promise<IProduct[]> => {
-//     // Оголошую дуструктуровану змінну в якій виконую get запит на урлу `/products` і отримую список продуктів
-//     const {data: {products}} = await axiosInstance.get<IProductsResponseType>('/products');
-//     // Повертаю масив продуктів
-//     return products
-// }
+// Експортуємо асинхронну функцію. яка повертає (завантажує) список продуктів, з аудентифікованої точки (якщо користувач авторизований)
+export const loadAuthUsers = async (): Promise<IUser[]> => {
+    // Оголошую дуструктуровану змінну в якій виконую get запит на урлу `/products` і отримую список продуктів
+    const {data: {users}} = await axiosInstance.get<IUsersResponseType>('/users');
+    // Повертаю масив продуктів
+    return users
+}
 // Експортую асинхронну функцію refresh для оновлення токенів
 export const refresh = async () => {
     // оголошую змінну iUserWithTokens, яка дістає токени з localStorage

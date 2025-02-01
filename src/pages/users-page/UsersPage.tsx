@@ -1,10 +1,10 @@
-import {PaginationComponent} from "../../components/pagination-component/PaginationComponent.tsx";
+
+import AuthUsersComponent from "../../components/users-component/AuthUsersComponent.tsx";
 
 const UsersPage = () => {
     return (
         <div>
-            Users page
-            <PaginationComponent/>
+            <AuthUsersComponent/>
         </div>
     );
 };

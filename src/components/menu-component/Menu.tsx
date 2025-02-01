@@ -32,15 +32,14 @@ export const Menu = () => {
                     <Link to='/'>Home</Link>
                 </li>
                 <li>
-                    <Link to='/users'>Users</Link>
+                    <Link to='/auth'>auth</Link>
+                </li>
+                <li>
+                    <Link to='/auth/users'>Users</Link>
                 </li>
                 <li>
                     <Link to='/recipes'>recipes</Link>
                 </li>
-                <li>
-                    <Link to='/auth'>auth</Link>
-                </li>
-
             </ul>
         </div>
     );
